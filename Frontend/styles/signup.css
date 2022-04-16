@@ -10,7 +10,7 @@ body {
 .logo{
     display: flex;
     align-items: center;
-    margin: auto;
+    margin: 20% auto 0 auto;
     color:black
 }
 
