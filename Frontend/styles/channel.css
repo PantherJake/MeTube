@@ -78,6 +78,10 @@ input:focus {
     border: none;
 }
 
+.mic {
+    margin-top: 10px;
+}
+
 .material-icons {
     color: rgb(100, 100, 100);
     padding: 0 7px;
@@ -178,3 +182,74 @@ hr {
     color: rgb(96, 96, 96);
     font-size: 12px;
 }
+
+.content-header{
+    background-color: #f9f9f9;
+    height: 15%;
+}
+
+.upper-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user img {
+    object-fit: cover;
+    border-radius: 80%;
+    height: 80px;
+    width: 80px;
+    margin-right: 10px;
+}
+
+.user-description{
+    display: flex;
+    flex-direction: column;
+}
+
+.options button{
+    width:185px;
+    height: 36px;
+    background-color: #065fd4;
+    color: white;
+    font-weight: bold;
+    border:none;
+    margin-left: 30em;
+}
+
+.tabs{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.tabs button{
+    background-color: #f9f9f9;
+    border: none;
+    color:gray;
+    font-size: large;
+    cursor: pointer;
+    width:10%;
+}
+
+.tabs button:hover {
+    color: black;
+    border-bottom:2px solid black;
+  }
+  
+
+.content-videos{
+    background-color: #f1f1f1;
+    height: 85%;
+}
+
