@@ -8,13 +8,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <!-- CSS File -->
     <link rel="stylesheet" href="styles/upload.css" />
-    <title>Youtube Clone with HTML & CSS</title>
+    <title>MeTube</title>
 </head>
 
 <body>
     <header class="header">
         <div class="logo left">
-            <i id="menu" class="material-icons">menu</i>
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/2560px-YouTube_full-color_icon_%282017%29.svg.png"
                 style="width:35px;height:20px;">
             <p style="font-weight: bold;">MeTube</p>
@@ -28,23 +27,26 @@
         </div>
 
         <div class="icons right">
-            <i class="material-icons">videocam</i>
-            <i class="material-icons">apps</i>
-            <i class="material-icons">notifications</i>
-            <i class="material-icons display-this">account_circle</i>
+            <a href="upload.html" class="material-icons">
+                <i class="material-icons">videocam</i>
+            </a>
+            <a href="channel.html" class="material-icons display-this">
+                <i class="material-icons display-this">account_circle</i>
+            </a>
+            
         </div>
     </header>
     <main>
         <div class=”side-bar”>
 
+            <div class="sidebar-text-navigate">
+                <h4>Navigate</h4>
+            </div>
+
             <div class="nav">
-                <a class="nav-link active">
+                <a href="homepage.html" class="nav-link">
                     <i class="material-icons">home</i>
                     <span>Home</span>
-                </a>
-                <a class="nav-link">
-                    <i class="material-icons">local_fire_department</i>
-                    <span>Trending</span>
                 </a>
                 <a class="nav-link">
                     <i class="material-icons">subscriptions</i>
@@ -53,26 +55,55 @@
                 <hr>
             </div>
 
+            <div class="sidebar-text-categories">
+                <h4 class="sidebar-text">Categories</h4>
+            </div>
             <a class="nav-link">
-                <i class="material-icons">library_add_check</i>
-                <span>Library</span>
+                <span>Science & Technology</span>
             </a>
             <a class="nav-link">
-                <i class="material-icons">history</i>
-                <span>History</span>
+                <span>Autos & Vehicles</span>
             </a>
             <a class="nav-link">
-                <i class="material-icons">play_arrow</i>
-                <span>Your Videos</span>
+                <span>Music</span>
             </a>
             <a class="nav-link">
-                <i class="material-icons">watch_later</i>
-                <span>Watch Later</span>
+                <span>Pets & Animals</span>
             </a>
             <a class="nav-link">
-                <i class="material-icons">thumb_up</i>
-                <span>Liked Videos</span>
+                <span>Sports</span>
             </a>
+            <a class="nav-link">
+                <span>Travel & Events</span>
+            </a>
+            <a class="nav-link">
+                <span>Gamin</span>
+            </a>
+            <a class="nav-link">
+                <span>People & Blogs</span>            
+            </a>
+            <a class="nav-link">
+                <span>Comedy</span>
+            </a>
+            <a class="nav-link">
+                <span>Film & Animation</span>
+            </a>
+            <a class="nav-link">
+                <span>News & Politics</span>
+            </a>
+            <a class="nav-link">
+                <span>How to & Style</span>
+            </a>
+            <a class="nav-link">
+                <span>Entertainment</span>
+            </a>
+            <a class="nav-link">
+                <span>Nonprofits & Activism</span>
+            </a>
+            <a class="nav-link">
+                <span>Education</span>
+            </a>
+
 
         </div>
         <div class="content">
@@ -83,7 +114,6 @@
                     <div style="margin-top:20px;">
                         <label class="file-upload">
                             <input type="file" name="userfile" id="userfile" accept="video/*" />
-                            Browse Local Files
                         </label>
                     </div>
                 </div>
@@ -110,7 +140,6 @@
                     <div style="margin-top:20px;">
                         <label class="file-upload">
                             <input type="file" name="thumbnail" id="thumbnail" />
-                            Upload Thumbnail
                         </label>
                     </div>
                 </div>

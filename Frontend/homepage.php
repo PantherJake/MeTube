@@ -30,6 +30,9 @@
             <a href="upload.html" class="material-icons">
                 <i class="material-icons">videocam</i>
             </a>
+            <a href="logout.php" class="material-icons">
+                <i class="material-icons">videocam</i>
+            </a>
             <a href="channel.html" class="material-icons display-this">
                 <i class="material-icons display-this">account_circle</i>
             </a>
@@ -40,7 +43,7 @@
         <div class=”side-bar”>
 
             <div class="nav">
-                <a href="homepage.html" class="nav-link">
+                <a href="homepage.php" class="nav-link">
                     <i class="material-icons">home</i>
                     <span>Home</span>
                 </a>

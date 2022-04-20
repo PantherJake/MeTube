@@ -68,7 +68,7 @@ if ($uploadOk == 0) {
     //echo $target_dir . $video_title . "." . $video_file_type . "<br>" . $target_dir . $video_title . '_thumbnail.' . $thumbnail_file_type;
     if (move_uploaded_file($_FILES['userfile']['tmp_name'], $target_dir.$video_title.".".$video_file_type) && move_uploaded_file($_FILES['thumbnail']['tmp_name'], $target_dir.$video_title.'_thumbnail.'.$thumbnail_file_type)) {
 
-      $query = "INSERT INTO video (video_id, length, upload_date, category, title, comment_count, description, rating, view_count, keywords) VALUES ('$video_id','$video_length','$video_upload_date','$video_category','$video_title','$video_comment_count','$video_description','$video_rating','$video_view_count','$video_keywords')";
+      $query = "INSERT INTO video (video_id, length, upload_date, category, title, comment_count, description, rating, view_count, keywords, thumbnail_extension) VALUES ('$video_id','$video_length','$video_upload_date','$video_category','$video_title','$video_comment_count','$video_description','$video_rating','$video_view_count','$video_keywords','$thumbnail_file_type')";
       $result=mysqli_query($con, $query) or die(mysqli_error($con));
       //echo "\n".$result."\n";
       mysqli_close($con);
