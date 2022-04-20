@@ -15,12 +15,12 @@
 
 <body>
     <header class="header">
-        <div class="logo left">
-            <i id="menu" class="material-icons">menu</i>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/2560px-YouTube_full-color_icon_%282017%29.svg.png"
-                style="width:35px;height:20px;">
-            <p style="font-weight: bold;">MeTube</p>
-        </div>
+        <a href="homepage.php" style="text-decoration: none; color: black;">
+            <div class="logo left">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/2560px-YouTube_full-color_icon_%282017%29.svg.png" style="width:35px;height:20px;">
+                <p style="font-weight: bold;">MeTube</p>
+            </div>
+        </a>
 
         <div class="search center">
             <form action="">
@@ -30,10 +30,19 @@
         </div>
 
         <div class="icons right">
-            <i class="material-icons">videocam</i>
-            <i class="material-icons">apps</i>
-            <i class="material-icons">notifications</i>
-            <i class="material-icons display-this">account_circle</i>
+            <a href="upload.php" title="Message" class="material-icons">
+                <i class="material-icons">chat</i>
+            </a>
+            <a href="upload.php" title="Upload" class="material-icons">
+                <i class="material-icons">upload</i>
+            </a>
+            <a href="logout.php" title="Log out" class="material-icons">
+                <i class="material-icons">logout</i>
+            </a>
+            <a href="channel.html" title="Profile" class="material-icons display-this">
+                <i class="material-icons display-this">account_circle</i>
+            </a>
+
         </div>
     </header>
     <main>
