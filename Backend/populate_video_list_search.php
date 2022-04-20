@@ -18,32 +18,32 @@ if (is_object($result)) {
 
             $display_video = 0;
             $words_in_search = explode(' ', $_POST['search']);
-            foreach ($words_in_search as $word) {
+            foreach ($words_in_search as $word)  {
                 if(strpos(strtolower($row['keywords']), strtolower($word)) !== false || strpos(strtolower($row['description']), strtolower($word)) !== false || strpos(strtolower($row['title']), strtolower($word)) !== false){
                     $display_video = 1;
                     $no_results = 0;
                 }
             }
-            
+
             if($display_video === 1){
                 echo "<div class='video'>";
                 echo "<div class='thumbnail'>";
-                echo "<a href='video.php'>";
+                echo "<a href='video.php?link=".$row['video_id']."'>";
                 echo "<img src='videos/".$row["video_id"]."/".$row['title']."_thumbnail.".$row['thumbnail_extension']."'";
                 echo "alt='' />";
                 echo "</a>";
                 echo "</div>";
                 echo "<div class='details'>";
                 echo "<div class='author'>";
-                echo "<a href='video.php'>";
+                echo "<a href='video.php?link=".$row['video_id']."'>";
                 echo "<img src='https://people.cs.clemson.edu/~jzwang/images/wang.jpg' alt='' />";
                 echo "</a>";
                 echo "</div>";
                 echo "<div class='title'>";
-                echo "<a href='video.php' class='title-content'>";
+                echo "<a href='video.php?link=".$row['video_id']."' class='title-content'>";
                 echo "<h3>".$row['title']."</h3>";
                 echo "</a>";
-                echo "<a href='video.php' class='author-profile'>";
+                echo "<a href='video.php?link=".$row['video_id']."' class='author-profile'>";
                 echo "Zijun Wang";
                 echo "</a>";
                 echo "<a class='video-details'>";

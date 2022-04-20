@@ -2,7 +2,8 @@
 include_once 'config.php';
 include_once 'header.php';
 
-$query = "SELECT uploads FROM channel INNER JOIN user_channel ON channel.channel_id = user_channel.channel_id WHERE $_SESSION[id] = user_channel.user_id";
+$user_logged = $_SESSION['username'];
+$query = "SELECT * FROM video WHERE username = '$user_logged'";
 $result = mysqli_query($con,$query);
 
 if (is_object($result)) {
@@ -13,22 +14,22 @@ if (is_object($result)) {
 
             echo "<div class='video'>";
             echo "<div class='thumbnail'>";
-            echo "<a href=''>";
+            echo "<a href='video.php?link=".$row['video_id']."'>";
             echo "<img src='videos/".$row["video_id"]."/".$row['title']."_thumbnail.".$row['thumbnail_extension']."'";
             echo "alt='' />";
             echo "</a>";
             echo "</div>";
             echo "<div class='details'>";
             echo "<div class='author'>";
-            echo "<a href=''>";
+            echo "<a href='video.php?link=".$row['video_id']."'>";
             echo "<img src='https://people.cs.clemson.edu/~jzwang/images/wang.jpg' alt='' />";
             echo "</a>";
             echo "</div>";
             echo "<div class='title'>";
-            echo "<a href='' class='title-content'>";
+            echo "<a href='video.php?link=".$row['video_id']."' class='title-content'>";
             echo "<h3>".$row['title']."</h3>";
             echo "</a>";
-            echo "<a href='' class='author-profile'>";
+            echo "<a href='video.php?link=".$row['video_id']."' class='author-profile'>";
             echo "Zijun Wang";
             echo "</a>";
             echo "<a class='video-details'>";

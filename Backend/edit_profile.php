@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     //validate non-existing username and old password matching
-    if($_POST['username'] !== ""){
+    if(trim($_POST['username']) !== ""){
         $user_query = $_POST['username'];
         $query = "SELECT username,password FROM users_testing WHERE username = '$user_query'";
         $result = mysqli_query($con,$query);
@@ -60,6 +60,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 }
             } 
         }
+    }else{
+        $username_err = "please enter your original username if you do not want to change it";
     }
 
     
@@ -71,8 +73,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $param_username = $_POST['username'];
         $old_username = $_SESSION['username'];
         $query = "UPDATE users_testing SET password = '$param_password', username = '$param_username' WHERE username = '$old_username'";
-        if(mysqli_query($con, $query) === 1){
+        if(mysqli_query($con, $query)){
+            echo "HERE";
             $_SESSION['username'] = $param_username;
+            $query = "UPDATE video SET username = '$param_username' WHERE username = '$old_username'";
+            echo $query;
+            echo mysqli_query($con, $query) . " hey";
             header("location: homepage.php");
         }
         else{

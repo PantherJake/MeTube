@@ -13,22 +13,22 @@ if (is_object($result)) {
 
             echo "<div class='video'>";
             echo "<div class='thumbnail'>";
-            echo "<a href='video.php'>";
+            echo "<a href='video.php?link=".$row['video_id']."'>";
             echo "<img src='videos/".$row["video_id"]."/".$row['title']."_thumbnail.".$row['thumbnail_extension']."'";
             echo "alt='' />";
             echo "</a>";
             echo "</div>";
             echo "<div class='details'>";
             echo "<div class='author'>";
-            echo "<a href='video.php'>";
+            echo "<a href='video.php?link=".$row['video_id']."'>";
             echo "<img src='https://people.cs.clemson.edu/~jzwang/images/wang.jpg' alt='' />";
             echo "</a>";
             echo "</div>";
             echo "<div class='title'>";
-            echo "<a href='video.php' class='title-content'>";
+            echo "<a href='video.php?link=".$row['video_id']."' class='title-content'>";
             echo "<h3>".$row['title']."</h3>";
             echo "</a>";
-            echo "<a href='video.php' class='author-profile'>";
+            echo "<a href='video.php?link=".$row['video_id']."' class='author-profile'>";
             echo "Zijun Wang";
             echo "</a>";
             echo "<a class='video-details'>";

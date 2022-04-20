@@ -1,3 +1,7 @@
+<?php
+include_once 'config.php';
+include_once 'header.php';
+?>
 <html lang="en">
 
 <head>
@@ -12,78 +16,68 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="logo left">
-            <i id="menu" class="material-icons">menu</i>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/2560px-YouTube_full-color_icon_%282017%29.svg.png"
-                style="width:35px;height:20px;">
-            <p style="font-weight: bold;">MeTube</p>
-        </div>
-
-        <div class="search center">
-            <form action="">
-                <input type="text" placeholder="Search" />
-                <button><i class="material-icons">search</i></button>
-            </form>
-        </div>
-
-        <div class="icons right">
-                <?php
-                    include_once 'config.php';
-                    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-                        echo "<a href='upload.php' class='material-icons'>";
-                        echo "<i class='material-icons'>videocam</i>";
-                        echo "</a>";
-                        echo "<a href='logout.php' class='material-icons'>";
-                        echo "<i class='material-icons'>logout</i>";
-                        echo "</a>";
-                        echo "<a href='profile.php' class='material-icons display-this'>";
-                        echo "<i class='material-icons display-this'>account_circle</i>";
-                        echo "</a>";
-                    }
-                    else{
-                        echo "<a href='upload.php' class='material-icons'>";
-                        echo "<i class='material-icons'>videocam</i>";
-                        echo "</a>";
-                        echo "<a href='login.php' class='material-icons'>";
-                        echo "<i class='material-icons'>login</i>";
-                        echo "</a>";
-                        echo "<a href='login.php' class='material-icons display-this'>";
-                        echo "<i class='material-icons display-this'>perm_identity</i>";
-                        echo "</a>";
-                    }
-                ?>
-        </div>
-    </header>
     <main>
         <div class="content">
             <div class="video-player">
                 <video width="70%" height="auto" controls controlsList="nodownload">
-                    <source src="videos/a5399e4c92d0c21347c7c8a7aeffd81614079b6734a07ec1fd751af762181fbe/Title.mp4" type="video/mp4">
+                    <?php
+                    $link = $_GET['link'];
+                    $query = "SELECT * FROM video WHERE video_id = '$link'";
+                    $result = mysqli_query($con,$query);
+                    if (is_object($result)) {
+                        if ($result->num_rows === 1) {
+                            // output data of each row
+                            $row = $result->fetch_assoc();
+                            echo "<source src=\""."videos/".$_GET['link']."/".$row['title'].".".$row['video_extension']."\""." type=\"video/mp4\">";
+                        }
+                        else{
+                            echo "Invalid video id";
+                        }
+                    }
+                    else{
+                        echo "Error when attempting to access video";
+                    }
+
+                    ?>
                     Your browser does not support HTML video.
                 </video>
             </div>
             <div class="video-header">
-                <div class="video-title">
-                    <p>
-                        Just a random video I posted for testing purpose
-                    </p>
-                </div>
-                <div class="video-options">
                     <?php
-                    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-                        echo "<a href='videos/a5399e4c92d0c21347c7c8a7aeffd81614079b6734a07ec1fd751af762181fbe/Title.mp4' style='color:black; text-decoration: none;' class='video-option' download>";
-                        echo "<span class='material-icons'>";
-                        echo "file_download";
-                        echo "</span>";
-                        echo "Download";
-                        echo "</a>";
-                        echo "<a href='videos/a5399e4c92d0c21347c7c8a7aeffd81614079b6734a07ec1fd751af762181fbe/Title.mp4' style='color:black; text-decoration: none;' class='video-option' download>";
-                        echo "<span class='material-icons'>";
-                        echo "playlist_add";
-                        echo "</span>";
-                        echo "Save";
-                        echo "</a>";
+                    $link = $_GET['link'];
+                    $query = "SELECT * FROM video WHERE video_id = '$link'";
+                    $result = mysqli_query($con,$query);
+                    if (is_object($result)) {
+                        if ($result->num_rows === 1) {
+                            // output data of each row
+                            $row = $result->fetch_assoc();
+                            echo "<div class=\"video-title\">";
+                            echo "<p>";
+                            echo $row['title'];
+                            echo "</p>";
+                            echo "</div>";
+                            echo "<div class=\"video-options\">";
+                            if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+                                echo "<a href='videos/".$_GET['link']."/".$row['title'].".".$row['video_extension']."' style='color:black; text-decoration: none;' class='video-option' download>";
+                                echo "<span class='material-icons'>";
+                                echo "file_download";
+                                echo "</span>";
+                                echo "Download";
+                                echo "</a>";
+                                echo "<a href='videos/".$_GET['link']."/".$row['title'].".".$row['video_extension']."' style='color:black; text-decoration: none;' class='video-option' download>";
+                                echo "<span class='material-icons'>";
+                                echo "playlist_add";
+                                echo "</span>";
+                                echo "Save";
+                                echo "</a>";
+                            }
+                        }
+                        else{
+                            echo "Invalid video id";
+                        }
+                    }
+                    else{
+                        echo "Error when attempting to access video";
                     }
                     ?>  
                 </div>
@@ -96,14 +90,34 @@
                             alt="" />
                     </div>
                     <div class="user-description">
-                        <h3>
-                            Francesco Ciulla
-                        </h3>
-                        <br>
-                        <p><b>Description: </b> This is the description</p>
-                        <p><b>Category: </b> Education</p>
-                        <p><b>Keywords: </b> None</p>
-                        <p><b>Date: </b> None</p>
+                    <?php
+
+                    $link = $_GET['link'];
+                    $query = "SELECT * FROM video WHERE video_id = '$link'";
+                    $result = mysqli_query($con,$query);
+                    if (is_object($result)) {
+                        if ($result->num_rows === 1) {
+                            // output data of each row
+                            $row = $result->fetch_assoc();
+                            echo "<h3>";
+                            echo $row['username'];
+                            echo "</h3>";
+                            echo "<br>";
+                            echo "<p><b>Description: </b>".$row['description']."</p>";
+                            echo "<p><b>Category: </b>".$row['category']."</p>";
+                            echo "<p><b>Keywords: </b>".$row['keywords']."</p>";
+                            echo "<p><b>Upload Date: </b>".$row['upload_date']."</p>";
+                        }
+                        else{
+                            echo "Invalid video id";
+                        }
+                    }
+                    else{
+                        echo "Error when attempting to access video";
+                    }
+
+                        
+                    ?>
                     </div>
                 </div>
 
