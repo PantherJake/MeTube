@@ -1,3 +1,15 @@
+<?php
+// Include config file
+require_once "config.php";
+
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if (!isset($_SESSION["loggedin"])) {
+    header("location: login.php");
+    exit;
+}
+
+?>
+
 <html lang="en">
 
 <head>
@@ -28,28 +40,31 @@
         </div>
 
         <div class="icons right">
-            <?php
-            include_once 'config.php';
-            if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-                echo "<a href='upload.php' class='material-icons'>";
-                echo "<i class='material-icons'>videocam</i>";
-                echo "</a>";
-                echo "<a href='logout.php' class='material-icons'>";
-                echo "<i class='material-icons'>logout</i>";
-                echo "</a>";
-                echo "<a href='channel.php' class='material-icons display-this'>";
-                echo "<i class='material-icons display-this'>account_circle</i>";
-                echo "</a>";
-            } else {
-                echo "<a href='upload.php' class='material-icons'>";
-                echo "<i class='material-icons'>videocam</i>";
-                echo "</a>";
-                echo "<a href='login.php' class='material-icons'>";
-                echo "<i class='material-icons'>login</i>";
-                echo "</a>";
-                echo "<a href='login.php' class='material-icons display-this'>";
-                echo "<i class='material-icons display-this'>perm_identity</i>";
-                echo "</a>";
+        <?php
+            if (!isset($_SESSION["loggedin"])) {
+                echo ("
+                <div class='options' style='background-color=blue '>
+                <a href='login.php'>
+                    <button>Sign in</button>
+                </a>
+            </div>");
+
+            } elseif (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+                $test = "You are logged in!";
+                $username = $_SESSION["username"];
+                echo ("
+                <a href='upload.php' title='Message' class='material-icons'>
+                <i class='material-icons'>chat</i>
+            </a>
+            <a href='upload.php' title='Upload' class='material-icons'>
+                <i class='material-icons'>upload</i>
+            </a>
+            <a href='logout.php' title='Log out' class='material-icons'>
+                <i class='material-icons'>logout</i>
+            </a>
+                <a href='channel.php' title='Profile' class='material-icons display-this'>
+                <i class='material-icons display-this'>account_circle</i>
+                </a>");
             }
             ?>
         </div>

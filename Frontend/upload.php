@@ -2,7 +2,7 @@
 // Include config file
 require_once "config.php";
 
-// Check if the user is already logged in, if yes then redirect him to welcome page
+// Check if the user is already logged in, if yes then redirect him to login page
 if (!isset($_SESSION["loggedin"])) {
     header("location: login.php");
     exit;
