@@ -1,11 +1,9 @@
-<html lang="en">
+﻿<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Auto refreshes every 3 seconds -->
-    <meta http-equiv="refresh" content="3">
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <!-- CSS File -->
@@ -79,12 +77,12 @@
         </div>
         <div class="content">
 
-            <form>
+            <form method="post" action="upload.php" enctype="multipart/form-data">
                 <div class="upload-video">
                     <h3>Upload</h3>
                     <div style="margin-top:20px;">
                         <label class="file-upload">
-                            <input type="file" name="file" id="file" />
+                            <input type="file" name="userfile" id="userfile" accept="video/*" />
                             Browse Local Files
                         </label>
                     </div>
@@ -111,7 +109,7 @@
                         attention</p>
                     <div style="margin-top:20px;">
                         <label class="file-upload">
-                            <input type="file" name="file" id="file" />
+                            <input type="file" name="thumbnail" id="thumbnail" />
                             Upload Thumbnail
                         </label>
                     </div>
@@ -144,12 +142,12 @@
                     <div class="words textholder">
                         <h5>Separate with space <i class="material-icons" style="font-size:medium">priority_high</i>
                         </h5>
-                        <input type="text" name="title" id="title" />
+                        <input type="text" name="keywords" id="keywords" />
                     </div>
                 </div>
 
 
-                <button type="submit" form="nameform" value="Submit" class="upload-button">Submit</button>
+                <input type="submit" value="Upload" class="upload-button" name="submit">
 
             </form>
 

@@ -178,18 +178,6 @@ hr {
     width: 60vw;
 }
 
-input[type="file"] {
-    display: none;
-}
-
-.file-upload{
-    padding:5px;
-    background-color: #065fd4;
-    color: white;
-    font-weight: bold;
-    border:1px solid black;
-}
-
 .details{
     display: flex;
     flex-direction: column;
