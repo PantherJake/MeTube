@@ -39,18 +39,10 @@ if (!isset($_SESSION)) {
 
         <div class="icons right">
             <p><?php echo $username; ?></p>
-            <a href="upload.php" title="Message" class="material-icons">
-                <i class="material-icons">chat</i>
-            </a>
-            <a href="upload.php" title="Upload" class="material-icons">
-                <i class="material-icons">upload</i>
-            </a>
-            <a href="logout.php" title="Log out" class="material-icons">
-                <i class="material-icons">logout</i>
-            </a>
             <?php
             if (!isset($_SESSION["loggedin"])) {
-                echo ("<div class='options' style='background-color=blue '>
+                echo ("
+                <div class='options' style='background-color=blue '>
                 <a href='login.php'>
                     <button>Sign in</button>
                 </a>
@@ -59,7 +51,17 @@ if (!isset($_SESSION)) {
             } elseif (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
                 $test = "You are logged in!";
                 $username = $_SESSION["username"];
-                echo ("<a href='channel.html' title='Profile' class='material-icons display-this'>
+                echo ("
+                <a href='upload.php' title='Message' class='material-icons'>
+                <i class='material-icons'>chat</i>
+            </a>
+            <a href='upload.php' title='Upload' class='material-icons'>
+                <i class='material-icons'>upload</i>
+            </a>
+            <a href='logout.php' title='Log out' class='material-icons'>
+                <i class='material-icons'>logout</i>
+            </a>
+                <a href='channel.php' title='Profile' class='material-icons display-this'>
                 <i class='material-icons display-this'>account_circle</i>
                 </a>");
             }
@@ -86,22 +88,55 @@ if (!isset($_SESSION)) {
                 <hr>
             </div>
 
-            <a class="nav-link">
-                <i class="material-icons">library_add_check</i>
-                <span>Library</span>
-            </a>
-            <a class="nav-link">
-                <i class="material-icons">history</i>
-                <span>History</span>
-            </a>
-            <a class="nav-link">
-                <i class="material-icons">play_arrow</i>
-                <span>Your Videos</span>
-            </a>
-            <a class="nav-link">
-                <i class="material-icons">thumb_up</i>
-                <span>Liked Videos</span>
-            </a>
+            <div class="sidebar-text-categories">
+                    <h4 class="sidebar-text">Categories</h4>
+                </div>
+
+                <a class="nav-link">
+                    <span>Science & Technology</span>
+                </a>
+                <a class="nav-link">
+                    <span>Autos & Vehicles</span>
+                </a>
+                <a class="nav-link">
+                    <span>Music</span>
+                </a>
+                <a class="nav-link">
+                    <span>Pets & Animals</span>
+                </a>
+                <a class="nav-link">
+                    <span>Sports</span>
+                </a>
+                <a class="nav-link">
+                    <span>Travel & Events</span>
+                </a>
+                <a class="nav-link">
+                    <span>Gamin</span>
+                </a>
+                <a class="nav-link">
+                    <span>People & Blogs</span>            
+                </a>
+                <a class="nav-link">
+                    <span>Comedy</span>
+                </a>
+                <a class="nav-link">
+                    <span>Film & Animation</span>
+                </a>
+                <a class="nav-link">
+                    <span>News & Politics</span>
+                </a>
+                <a class="nav-link">
+                    <span>How to & Style</span>
+                </a>
+                <a class="nav-link">
+                    <span>Entertainment</span>
+                </a>
+                <a class="nav-link">
+                    <span>Nonprofits & Activism</span>
+                </a>
+                <a class="nav-link">
+                    <span>Education</span>
+                </a>
 
         </div>
         <div class="content">
