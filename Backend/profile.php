@@ -53,7 +53,9 @@ require_once "header.php";
                 <a href="playlist_list.php">
                     <button>PLAYLISTS</button>
                 </a>
-                <button>CHANNELS</button>
+                <a href="edit_profile.php">
+                    <button>Edit Profile</button>
+                </a>
             </div>
         </div>
         <div class="content-videos">

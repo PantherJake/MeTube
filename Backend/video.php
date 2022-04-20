@@ -37,7 +37,7 @@
                         echo "<a href='logout.php' class='material-icons'>";
                         echo "<i class='material-icons'>logout</i>";
                         echo "</a>";
-                        echo "<a href='channel.php' class='material-icons display-this'>";
+                        echo "<a href='profile.php' class='material-icons display-this'>";
                         echo "<i class='material-icons display-this'>account_circle</i>";
                         echo "</a>";
                     }

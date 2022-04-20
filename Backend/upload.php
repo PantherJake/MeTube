@@ -60,7 +60,7 @@ if (!isset($_SESSION["loggedin"])) {
             <a href='logout.php' title='Log out' class='material-icons'>
                 <i class='material-icons'>logout</i>
             </a>
-                <a href='channel.php' title='Profile' class='material-icons display-this'>
+                <a href='profile.php' title='Profile' class='material-icons display-this'>
                 <i class='material-icons display-this'>account_circle</i>
                 </a>");
             }

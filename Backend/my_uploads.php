@@ -2,7 +2,7 @@
 include_once 'config.php';
 include_once 'header.php';
 
-$query = "SELECT uploads FROM user WHERE user_id = $_SESSION[id]";
+$query = "SELECT uploads FROM channel INNER JOIN user_channel ON channel.channel_id = user_channel.channel_id WHERE $_SESSION[id] = user_channel.user_id";
 $result = mysqli_query($con,$query);
 
 if (is_object($result)) {
