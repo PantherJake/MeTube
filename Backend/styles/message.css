@@ -78,25 +78,13 @@ input:focus {
     border: none;
 }
 
-.icons {
-    display: flex;
-    flex-direction: row;
+.mic {
+    margin-top: 10px;
 }
 
 .material-icons {
     color: rgb(100, 100, 100);
     padding: 0 7px;
-    cursor: pointer;
-}
-
-.options button{
-    width:150px;
-    height: 36px;
-    background-color: #065fd4;
-    color: white;
-    font-weight: bold;
-    border:none;
-    margin-left: 7px;
     cursor: pointer;
 }
 
@@ -136,7 +124,7 @@ hr {
 .content {
     background-color: #f9f9f9;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     padding: 15px 15px;
     border-top: 1px solid #ddd;
     overflow-y: scroll;
@@ -189,8 +177,121 @@ hr {
     margin-bottom: 6px;
 }
 
-.title a, span {
+.title a,
+span {
     text-decoration: none;
     color: rgb(96, 96, 96);
     font-size: 12px;
+}
+
+.content-header {
+    background-color: #f9f9f9;
+    height: 5vh;
+}
+
+.upper-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user img {
+    object-fit: cover;
+    border-radius: 80%;
+    height: 80px;
+    width: 80px;
+    margin-right: 10px;
+}
+
+.user-description {
+    display: flex;
+    flex-direction: column;
+}
+
+.options button {
+    width: 185px;
+    height: 36px;
+    background-color: #065fd4;
+    color: white;
+    font-weight: bold;
+    border: none;
+    margin-left: 30em;
+}
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.tabs button {
+    background-color: #f9f9f9;
+    border: none;
+    color: gray;
+    font-size: large;
+    cursor: pointer;
+    width: 10%;
+}
+
+.tabs button:hover {
+    color: black;
+    border-bottom: 2px solid black;
+}
+
+.message-section {
+    background-color: #f1f1f1;
+    height: 100vh;
+    padding-left: 10%;
+    padding-top: 5%;
+}
+
+.message-section h3 {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: left;
+
+}
+
+
+form input {
+    display: inline-block;
+    float: left;
+    width: 20vw;
+    height: 5vh;
+    font-size: 16px;
+}
+
+textarea {
+    width: 40vw;
+    height: 40vh;
+    font-size: 16px;
+}
+
+.same-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+input[type="submit"] {
+    width: 185px;
+    height: 36px;
+    background-color: #065fd4;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-left: 43vw;
 }

@@ -1,83 +1,94 @@
 <?php
+// Initialize the session
+ 
+// Include config file
 require_once "config.php";
+ 
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: homepage.php");
+    exit;
+}
 
-$email = $password = "";
-$email_err = $password_err = "";
-
-// Ensures a successful login obtains the users 'userID'
-// $session_user_id = "";
-
-if($_SERVER["REQUEST_METHOD"] == "GET") {
-
-    // Validate email entry
-    if(empty(trim($_GET["email"]))) {
-        $email_err = "Please enter a valid email";
+// Define variables and initialize with empty values
+$username = $password = "";
+$username_err = $password_err = $login_err = "";
+ 
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
+    // Check if username is empty
+    if(empty(trim($_POST["username"]))){
+        $username_err = "Please enter username.";
+    } else{
+        $username = trim($_POST["username"]);
     }
-    else {
-        $sql = "SELECT userID FROM User WHERE email = ?";
-
-        if($stmt = mysqli_prepare($link, $sql)) {
-            mysqli_stmt_bind_param($stmt, "s", $param_email);
-            $param_email = trim($_GET["email"]);
-
-            // Attempt to execute the SELECT statement
-            if(mysqli_stmt_execute($stmt)) {
-                mysqli_stmt_store_result($stmt);
-                
-                // If there is NOT a row with a value for user input 'email'
-                if(mysqli_stmt_num_rows($stmt) != 1) {
-                    $email_err = "No account associated with this email.";
-                }
-                else {
-                    $email = trim($_GET["email"]);
-                }
-            }
-            else {
-                echo "Oops! Something went wrong. Please try again later.";
-            }
-            mysqli_stmt_close($stmt);
-        }
-        
-    }
-
-    // Validate password entry
+    
+    // Check if password is empty
     if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter a valid password.";     
+        $password_err = "Please enter your password.";
+    } else{
+        $password = trim($_POST["password"]);
     }
-    else {
-        $sql = "SELECT userID FROM User WHERE email = ".$email." AND password = ?";
-
-        if($stmt = mysqli_prepare($link, $sql)) {
-            mysqli_stmt_bind_param($stmt, "s", $param_password);
-            $param_password = trim($_GET["password"]);
-
-            // Attempt to execute the SELECT statement
-            if(mysqli_stmt_execute($stmt)) {
+    
+    // Validate credentials
+    if(empty($username_err) && empty($password_err)){
+        // Prepare a select statement
+        $sql = "SELECT user_id, username, password FROM users_testing WHERE username = ?";
+        
+        if($stmt = mysqli_prepare($con, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            
+            // Set parameters
+            $param_username = $username;
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Store result
                 mysqli_stmt_store_result($stmt);
                 
-                // If there is NOT a row with a value for user input 'password'
-                if(mysqli_stmt_num_rows($stmt) != 1) {
-                    $password_err = "Password incorrect.";
+                // Check if username exists, if yes then verify password
+                if(mysqli_stmt_num_rows($stmt) == 1){                    
+                    // Bind result variables
+                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                    if(mysqli_stmt_fetch($stmt)){
+                        if(password_verify($password, $hashed_password)){
+                            // Password is correct, so start a new session
+                            session_start();
+                            
+                            // Store data in session variables
+                            $_SESSION["loggedin"] = true;
+                            $_SESSION["id"] = $id;
+                            $_SESSION["username"] = $username;                            
+                            
+                            // Redirect user to welcome page
+                            header("location: homepage.php");
+                        } else{
+                            // Password is not valid, display a generic error message
+                            $login_err = "Invalid username or password.";
+                        }
+                    }
+                } else{
+                    // Username doesn't exist, display a generic error message
+                    $login_err = "Invalid username or password.";
                 }
-                else {
-                    $password = trim($_GET["email"]);
-                }
-            }
-            else {
+            } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
+
+            // Close statement
             mysqli_stmt_close($stmt);
         }
     }
-
-    if(empty($email_err) && empty($password_err)) {
-        header("location: homepage.php");
-    }
+    
+    // Close connection
+    mysqli_close($con);
 }
 ?>
-
-<DOCTYPE! html>
+ <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -95,10 +106,11 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
             <p style="font-weight: bold; font-size:2em;">MeTube</p>
         </div>
 
-        <form action="">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
             <div class="form-item">
-                <input type="email" name="email" id="email" placeholder="Email">
+                <input type="text" name="username" id="username" placeholder="Username" <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                <span class="invalid-feedback"><?php echo $username_err; ?></span>
             </div>
 
             <div class="form-item">
@@ -106,18 +118,24 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
                 <span class="pwd-format">
                     8-15 AlphaNumeric Characters
                 </span>
-                <input type="password" name="password" id="password" placeholder="Enter password">
+                <input type="password" name="password" id="password" placeholder="Enter password" <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
+                <span class="invalid-feedback"><?php echo $password_err; ?></span>
             </div>
 
             <div class="form-btns">
                 <button class="signup" type="submit">Login</button>
                 <div class="options">
-                    Don't have an account? <a href="#">Sign up here</a>
+                    Don't have an account? <a href="signup.php">Sign up here</a>
                 </div>
             </div>
 
         </form>
     </div>
+
+
+
+
+
 </body>
 
 </html>
