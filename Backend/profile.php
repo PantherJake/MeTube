@@ -2,12 +2,6 @@
 // Include config file
 require_once "config.php";
 require_once "header.php";
-
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if (!isset($_SESSION["loggedin"])) {
-    header("location: login.php");
-    exit;
-}
 ?>
 
 <html lang="en">
@@ -50,13 +44,17 @@ if (!isset($_SESSION["loggedin"])) {
             </div>
 
             <div class="tabs">
-                <button>HOME</button>
-                <button>VIDEOS</button>
-                <button>PLAYLISTS</button>
+                <a href="homepage.php">
+                    <button>HOME</button>
+                </a>
+                <a href="my_uploads.php">
+                    <button>VIDEOS</button>
+                </a>
+                <a href="playlist_list.php">
+                    <button>PLAYLISTS</button>
+                </a>
                 <button>CHANNELS</button>
             </div>
-
-
         </div>
         <div class="content-videos">
         </div>
@@ -64,5 +62,4 @@ if (!isset($_SESSION["loggedin"])) {
 </main>
 <!-- Main Body Ends -->
 </body>
-
 </html>
