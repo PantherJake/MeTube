@@ -30,7 +30,7 @@ if (!isset($_SESSION)) {
                     <i class="material-icons">home</i>
                     <span>Home</span>
                 </a>
-                <a class="nav-link">
+                <a href="trending_video_list.php" class="nav-link">
                     <i class="material-icons">local_fire_department</i>
                     <span>Trending</span>
                 </a>
@@ -41,7 +41,7 @@ if (!isset($_SESSION)) {
                     <i class='material-icons'>subscriptions</i>
                     <span>Subscriptions</span>
                 </a>
-                <a href='favorites.php' class='nav-link'>
+                <a href='favorites_video_list.php' class='nav-link'>
                     <i class='material-icons'>favorite_border</i>
                     <span>Favorites</span>");
                 }

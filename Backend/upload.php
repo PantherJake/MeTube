@@ -74,10 +74,6 @@ if (!isset($_SESSION["loggedin"])) {
                     <i class="material-icons">home</i>
                     <span>Home</span>
                 </a>
-                <a class="nav-link">
-                    <i class="material-icons">subscriptions</i>
-                    <span>Subscriptions</span>
-                </a>
                 <hr>
             </div>
         </div>
