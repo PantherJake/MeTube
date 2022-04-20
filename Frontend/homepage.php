@@ -52,7 +52,7 @@ if (!isset($_SESSION)) {
                 $test = "You are logged in!";
                 $username = $_SESSION["username"];
                 echo ("
-                <a href='upload.php' title='Message' class='material-icons'>
+                <a href='message.php' title='Message' class='material-icons'>
                 <i class='material-icons'>chat</i>
             </a>
             <a href='upload.php' title='Upload' class='material-icons'>
