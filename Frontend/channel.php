@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Auto refreshes every 3 seconds -->
-    <meta http-equiv="refresh" content="3">
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <!-- CSS File -->
@@ -97,14 +95,17 @@
                         </div>
                         <div class="user-description">
                             <h3>
-                                Francesco Ciulla
+                                <?php 
+                                include_once 'config.php';
+                                echo $_SESSION['username'];
+                                 ?>
                             </h3>
                             <span> No Subscribers </span>
                         </div>
                     </div>
 
                     <div class="options">
-                        <a href="http://stackoverflow.com">
+                        <a href="upload.html">
                             <button>Upload Video</button>
                         </a>
 
