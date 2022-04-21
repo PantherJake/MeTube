@@ -127,6 +127,50 @@ include_once 'header.php';
                 <hr>
             </div>
 
+            <div class="subscription">
+            <form method="post" action="<? echo $_SERVER['PHP_SELF']; ?>">
+                <input type="button" name="add" value="Subscribe" />
+                <?php
+                $query = "SELECT username FROM video";
+                $result = mysqli_query($con, $query);
+                $sub = "";
+                
+                if(is_object($result)) {
+                    $sub = $row['username'];
+                }
+                
+                if($sub != $_SESSION['username']) {
+                $sql = "INSERT INTO user_subscription (username, subscribed_channel) VALUES ('$_SESSION[username]', '$sub')";
+                    if($stmt = mysqli_prepare($con, $sql)) {
+                        mysqli_stmt_execute($stmt);
+                        echo "Thank you for subscribing!";
+                    }
+                }
+                ?>
+            </form>
+            </div>
+            <div class="favorites">
+                <form action="<? echo $_SERVER['PHP_SELF']; ?>" method="post">
+                    <input type="submit" name="favorite" value="Favorite" />
+                </form>
+
+                <?php
+                if($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $sql = "INSERT INTO user (favorites) VALUES (?)";
+                    if($stmt = mysqli_prepare($con, $sql)) {
+                        mysqli_stmt_bind_param($stmt, "s", $param_fav);
+                        $param_fav = $_POST['Favorite'];
+
+                        if(mysqli_stmt_execute($stmt)) {
+                            header("location: video.php");
+                        }
+                    }
+                    mysqli_stmt_close($stmt);
+                }
+                ?>
+            </div>
+
+        
             <div class="comment-section">
                 <h3>Comments</h3>
                 <br>
