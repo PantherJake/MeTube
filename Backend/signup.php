@@ -1,39 +1,29 @@
 <?php
-// Include config file
 require_once "config.php";
 
-// Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: homepage.php");
     exit;
 }
  
-// Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
  
-// Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
-    // Validate username
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter a username.";
     } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
         $username_err = "Username can only contain letters, numbers, and underscores.";
     } else{
-        // Prepare a select statement
-        $sql = "SELECT user_id FROM users_testing WHERE username = ?";
+        $sql = "SELECT user_id FROM user WHERE username = ?";
         
         if($stmt = mysqli_prepare($con, $sql)){
-            // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
             
-            // Set parameters
             $param_username = trim($_POST["username"]);
             
-            // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                /* store result */
                 mysqli_stmt_store_result($stmt);
                 
                 if(mysqli_stmt_num_rows($stmt) == 1){
@@ -45,12 +35,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
-            // Close statement
             mysqli_stmt_close($stmt);
         }
     }
     
-    // Validate password
     if(empty(trim($_POST["password"]))){
         $password_err = "Please enter a password.";     
     } elseif(strlen(trim($_POST["password"])) < 6){
@@ -59,7 +47,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $password = trim($_POST["password"]);
     }
     
-    // Validate confirm password
     if(empty(trim($_POST["confirm_password"]))){
         $confirm_password_err = "Please confirm password.";     
     } else{
@@ -69,39 +56,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
     
-    // Check input errors before inserting in database
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
-        // Prepare an insert statement
-        echo "hey we made it here";
-        $sql = "INSERT INTO users_testing (username, password) VALUES (?, ?)";
+        $param_username = $username;
+        $param_password = password_hash($password, PASSWORD_DEFAULT);
+        $curr_date = date("Y-m-d");
+        $default_path = "users/default/default.png";
+        $query = "INSERT INTO user (username,password,profile_picture_path,creation_date,subscription_count) VALUES ('$param_username', '$param_password', '$default_path', '$curr_date', 0)";
         
-        if($stmt = mysqli_prepare($con, $sql)){
-
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
-            // Set parameters
-            $param_username = $username;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
-
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Redirect to login page
-                //$_SESSION['loggedin'] = true;
-                header("location: login.php");
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
-
-            // Close statement
-            mysqli_stmt_close($stmt);
-        }
-        else{
-            echo "this...";
+        if (mysqli_query($con, $query)){
+            header("location: login.php");
         }
     }
     
-    // Close connection
     mysqli_close($con);
 }
 ?>

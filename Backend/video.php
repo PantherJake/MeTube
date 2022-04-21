@@ -123,59 +123,7 @@ include_once 'header.php';
 
                 <hr>
             </div>
-        
-            <div class="subscription">
-                <?php
-                $query = "SELECT username FROM video";
-                $result = mysqli_query($con,$query);
-                if(is_object($result)) {
-                    if($result->num_rows == 1) {
-                        $sub = $result;
-                    }
-                }
-                ?>
 
-                <?php
-                $_SESSION['subscription_count'] = ((isset($_SESSION['subscription_count'])) ? $_SESSION['subscription_count'] : 0);
-                if(isset($_POST['Subscribe'])){
-                    $_SESSION['subscription_count']++;
-                    $sql = "INSERT INTO user (subscriptions) VALUES (?)";
-
-                    if($stmt = mysqli_prepare($con, $sql)) {
-                        mysqli_stmt_bind_param($stmt, "s", $param_sub);
-                        $param_sub = $sub;
-
-                        mysqli_stmt_execute($stmt);
-                    }
-                    mysqli_stmt_close($stmt);
-                }
-                ?>
-
-                <form action="<? echo $_SERVER['PHP_SELF']; ?>" method="post">
-                    <input type="submit" name="add" value="Subscribe" />
-                </form>
-                <? echo $_SESSION["subscription_count"]; ?>  
-            </div>
-
-        <div class="favorites">
-            <form action="<? echo $_SERVER['PHP_SELF']; ?>" method="post">
-                <input type="submit" name="favorite" value="Favorite" />
-            </form>
-
-            <?php
-            if($_SERVER["REQUEST_METHOD"] == "POST") {
-                $sql = "INSERT INTO user (favorites) VALUES (?)";
-                if($stmt = mysqli_prepare($con, $sql)) {
-                    mysqli_stmt_bind_param($stmt, "s", $param_fav);
-                    $param_fav = $_POST['Favorite'];
-
-                    mysqli_stmt_execute($stmt);
-                }
-                mysqli_stmt_close($stmt);
-            }
-            ?>
-        </div>
-            
             <div class="comment-section">
                 <h3>Comments</h3>
                 <br>
@@ -185,7 +133,9 @@ include_once 'header.php';
                             alt="" />
                     </div>
 
-                    <textarea></textarea>
+                    <form>
+                        
+                    </form>
                 </div>
             </div>
         </div>
