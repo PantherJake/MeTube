@@ -1,53 +1,72 @@
+
 <?php
 include_once 'config.php';
 include_once 'header.php';
 
-$query = "SELECT favorites FROM user WHERE user_id = ".$_SESSION['id'];
+$user = $_SESSION['username'];
+$query = "SELECT * FROM favorite WHERE username = '$user'";
 $result = mysqli_query($con,$query);
-
+$none = 1;
 if (is_object($result)) {
     if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
-
-            //echo "id: " . $row["video_id"]. " - Name: " . $row["length"]. " " . $row["keywords"]. "<br>";
-
-            echo "<div class='video'>";
-            echo "<div class='thumbnail'>";
-            echo "<a href=''>";
-            echo "<img src='videos/".$row["video_id"]."/".$row['title']."_thumbnail.".$row['thumbnail_extension']."'";
-            echo "alt='' />";
-            echo "</a>";
-            echo "</div>";
-            echo "<div class='details'>";
-            echo "<div class='author'>";
-            echo "<a href=''>";
-            echo "<img src='https://people.cs.clemson.edu/~jzwang/images/wang.jpg' alt='' />";
-            echo "</a>";
-            echo "</div>";
-            echo "<div class='title'>";
-            echo "<a href='' class='title-content'>";
-            echo "<h3>".$row['title']."</h3>";
-            echo "</a>";
-            echo "<a href='' class='author-profile'>";
-            echo "Zijun Wang";
-            echo "</a>";
-            echo "<a class='video-details'>";
-            echo "<span>".$row['view_count']." Views</span>";
-            echo "</a>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
+        $rows = array();
+        while($row = $result->fetch_assoc()){
+        $posts[] = $row;
         }
-    } else {
+
+        $query2 = "SELECT * FROM video";
+        $result2 = mysqli_query($con,$query2);
+            
+            if (is_object($result2)) {
+                if ($result2->num_rows > 0) {
+                    while($row2 = $result2->fetch_assoc()){
+                        foreach ($posts as $row){
+                            foreach ($row as $element){
+                                if($element === $row2['video_id']){
+                                    //echo "id: " . $row["video_id"]. " - Name: " . $row["length"]. " " . $row["keywords"]. "<br>";
+                                    $none = 0;
+                                    echo "<div class='video'>";
+                                    echo "<div class='thumbnail'>";
+                                    echo "<a href=''>";
+                                    echo "<img src='videos/".$row2["video_id"]."/".$row2['title']."_thumbnail.".$row2['thumbnail_extension']."'";
+                                    echo "alt='' />";
+                                    echo "</a>";
+                                    echo "</div>";
+                                    echo "<div class='details'>";
+                                    echo "<div class='author'>";
+                                    echo "<a href=''>";
+                                    echo "<img src='https://people.cs.clemson.edu/~jzwang/images/wang.jpg' alt='' />";
+                                    echo "</a>";
+                                    echo "</div>";
+                                    echo "<div class='title'>";
+                                    echo "<a href='' class='title-content'>";
+                                    echo "<h3>".$row2['title']."</h3>";
+                                    echo "</a>";
+                                    echo "<a href='' class='author-profile'>";
+                                    echo "Zijun Wang";
+                                    echo "</a>";
+                                    echo "<a class='video-details'>";
+                                    echo "<span>".$row2['view_count']." Views</span>";
+                                    echo "</a>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                }
+                            }
+                        }
+                    }
+                    if($none === 1){
+                        echo "0 results";
+                    }
+        } else {
+             echo "0 results";
+        }
+    }
+    else {
         echo "0 results";
     }
 }
-else {
-    echo "0 results";
 }
-
-mysqli_close($con);
 ?>
 
 <html lang="en">
@@ -64,5 +83,3 @@ mysqli_close($con);
 <body>
 </body>
 </html>
-
-
