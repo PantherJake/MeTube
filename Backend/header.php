@@ -16,8 +16,8 @@ $username = "";
             </div>
         </a>
         <div class="search center">
-            <form action="">
-                <input type="text" placeholder="Search" />
+            <form action="populate_video_list_search.php" method="post">
+                <input type="text" name="search" placeholder="Search" />
                 <button><i class="material-icons">search</i></button>
             </form>
         </div>
