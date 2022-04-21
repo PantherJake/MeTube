@@ -90,6 +90,7 @@ if(isset($_GET['link'])) {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <!-- CSS File -->
     <link rel="stylesheet" href="styles/index.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="styles/playlist.css?v=<?php echo time(); ?>" />
     <title>Youtube Clone with HTML & CSS</title>
 </head>
 
@@ -98,13 +99,13 @@ if(isset($_GET['link'])) {
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="form-item-playlist">
             <a href="playlist_list.php?link=1">
-                <input type="button" value="Create Playlist" id="create" <?php echo (!empty($playlist_err)) ? 'is-invalid' : ''; ?>>
+                <input type="button" value="Create Playlist" id="a" <?php echo (!empty($playlist_err)) ? 'is-invalid' : ''; ?>>
             </a>
             <a href="playlist_list.php?link=2">
-                <input type="button" value="Modify Playlist" id="modify" <?php echo (!empty($playlist_err)) ? 'is-invalid' : ''; ?>>
+                <input type="button" value="Modify Playlist" id="a" <?php echo (!empty($playlist_err)) ? 'is-invalid' : ''; ?>>
             </a>
             <a href="playlist_list.php?link=3">
-                <input type="button" value="Delete Playlist" id="delete" <?php echo (!empty($playlist_err)) ? 'is-invalid' : ''; ?>>
+                <input type="button" value="Delete Playlist" id="a" <?php echo (!empty($playlist_err)) ? 'is-invalid' : ''; ?>>
             </a>
         </div>
     </main>

@@ -145,9 +145,7 @@ include_once 'header.php';
                         mysqli_stmt_bind_param($stmt, "s", $param_sub);
                         $param_sub = $sub;
 
-                        if(mysqli_stmt_execute($stmt)) {
-                            echo "Success!";
-                        }
+                        mysqli_stmt_execute($stmt);
                     }
                     mysqli_stmt_close($stmt);
                 }
@@ -158,6 +156,25 @@ include_once 'header.php';
                 </form>
                 <? echo $_SESSION["subscription_count"]; ?>  
             </div>
+
+        <div class="favorites">
+            <form action="<? echo $_SERVER['PHP_SELF']; ?>" method="post">
+                <input type="submit" name="favorite" value="Favorite" />
+            </form>
+
+            <?php
+            if($_SERVER["REQUEST_METHOD"] == "POST") {
+                $sql = "INSERT INTO user (favorites) VALUES (?)";
+                if($stmt = mysqli_prepare($con, $sql)) {
+                    mysqli_stmt_bind_param($stmt, "s", $param_fav);
+                    $param_fav = $_POST['Favorite'];
+
+                    mysqli_stmt_execute($stmt);
+                }
+                mysqli_stmt_close($stmt);
+            }
+            ?>
+        </div>
             
             <div class="comment-section">
                 <h3>Comments</h3>

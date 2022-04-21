@@ -54,7 +54,7 @@ require_once "header.php";
                     <button>PLAYLISTS</button>
                 </a>
                 <a href="edit_profile.php">
-                    <button>Edit Profile</button>
+                    <button>EDIT PROFILE</button>
                 </a>
             </div>
         </div>

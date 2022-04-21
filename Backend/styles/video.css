@@ -170,6 +170,17 @@ input[name="add"] {
     margin-bottom: 1em;
 }
 
+input[name="favorite"] {
+    width:185px;
+    height: 36px;
+    background-color: #0000FF;
+    color: white;
+    font-weight: bold;
+    border:none;
+    margin-left: 11em;
+    margin-bottom: 1em;
+}
+
 textarea{
     width: 50vw;
 }
