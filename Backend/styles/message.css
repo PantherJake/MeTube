@@ -295,3 +295,28 @@ input[type="submit"] {
     cursor: pointer;
     margin-left: 43vw;
 }
+
+.inbox-message{
+    border: 2px solid gray;
+    display: flex;
+    flex-direction: column;
+    position:relative;
+}
+
+.inbox-message button{
+    width: 185px;
+    height: 36px;
+    background-color: #065fd4;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top:0px;
+    right: 0px;
+}
+
+.reply {
+     margin-left: 10%;
+     padding-left: 10%;
+}

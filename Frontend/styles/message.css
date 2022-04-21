@@ -295,3 +295,9 @@ input[type="submit"] {
     cursor: pointer;
     margin-left: 43vw;
 }
+
+.inbox-message{
+    border: 2px solid gray;
+    display: flex;
+    flex-direction: column;
+}
