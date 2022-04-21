@@ -43,7 +43,7 @@ if (is_object($result)) {
                                     echo "<h3>".$row2['title']."</h3>";
                                     echo "</a>";
                                     echo "<a href='' class='author-profile'>";
-                                    echo "Zijun Wang";
+                                    echo $row['username'];
                                     echo "</a>";
                                     echo "<a class='video-details'>";
                                     echo "<span>".$row2['view_count']." Views</span>";
@@ -78,7 +78,7 @@ if (is_object($result)) {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <!-- CSS File -->
     <link rel="stylesheet" href="styles/index.css?v=<?php echo time(); ?>" />
-    <title>Youtube Clone with HTML & CSS</title>
+    <title>MeTube</title>
 </head>
 <body>
 </body>

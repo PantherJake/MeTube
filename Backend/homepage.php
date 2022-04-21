@@ -19,7 +19,7 @@ if (!isset($_SESSION)) {
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <!-- CSS File -->
         <link rel="stylesheet" href="styles/index.css?v=<?php echo time(); ?>" />
-        <title>Youtube Clone with HTML & CSS</title>
+        <title>MeTube</title>
     </head>
 
     <body>
@@ -104,39 +104,8 @@ if (!isset($_SESSION)) {
         <div class="content">
         <div class="videos">
             <?php include 'populate_video_list.php'; ?>
-            <!-- a video starts 
-            <div class="video">
-                <div class="thumbnail">
-                    <a href="">
-                        <img src="http://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2019/10/Database-Management-System.jpg"
-                        alt="" />
-                    </a>
-                </div>
-                <div class="details">
-                    <div class="author">
-                        <a href="">
-                            <img src="https://people.cs.clemson.edu/~jzwang/images/wang.jpg" alt="" />
-                        </a>
-                    </div>
-                    <div class="title">
-                        <a href="" class="title-content">
-                            <h3>Database Management System</h3>
-                        </a>
-                        <a href="" class="author-profile">
-                            Zijun Wang
-                        </a>
-                        <a class="video-details">
-                            <span> 0 Views • 3 Months Ago </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-                a video Ends -->
-
-
         </div>
     </div>
     </main>
-    <!-- Main Body Ends -->
     </body>
 </html>

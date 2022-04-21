@@ -101,7 +101,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <!-- CSS File -->
         <link rel="stylesheet" href="styles/channel.css" />
-        <title>Youtube Clone with HTML & CSS</title>
+        <title>MeTube</title>
     </head>
 
     <body>

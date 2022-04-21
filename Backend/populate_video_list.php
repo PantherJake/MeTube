@@ -29,7 +29,7 @@ if (is_object($result)) {
             echo "<h3>".$row['title']."</h3>";
             echo "</a>";
             echo "<a href='video.php?link=".$row['video_id']."' class='author-profile'>";
-            echo "Zijun Wang";
+            echo $row['username'];
             echo "</a>";
             echo "<a class='video-details'>";
             echo "<span>".$row['view_count']." Views</span>";
