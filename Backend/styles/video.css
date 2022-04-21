@@ -168,6 +168,7 @@ input[name="add"] {
     border:none;
     margin-left: 11em;
     margin-bottom: 1em;
+    cursor: pointer;
 }
 
 input[name="favorite"] {
@@ -179,6 +180,7 @@ input[name="favorite"] {
     border:none;
     margin-left: 11em;
     margin-bottom: 1em;
+    cursor: pointer;
 }
 
 textarea{
